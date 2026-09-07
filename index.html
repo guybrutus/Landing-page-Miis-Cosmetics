@@ -1,0 +1,864 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Miis Cosmetics: maquillaje profesional para novia, editorial y evento social. Agenda tu cita en linea.">
+<title>Miis Cosmetics</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600&family=Bodoni+Moda:opsz,wght@6..96,400;6..96,500&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+  *,*::before,*::after{box-sizing:border-box}
+
+  :root{
+    color-scheme:light;
+    --ground:#F1EDEE;
+    --surface:#FFFFFF;
+    --surface-2:#E7E0E2;
+    --ink:#1B1315;
+    --ink-2:#6E6165;
+    --ink-3:#948A8D;
+    --rule:#DAD2D4;
+    --rule-soft:#E6DFE1;
+    --accent:#A6183C;
+    --accent-on:#FFFFFF;
+    --accent-wash:#F6E4E8;
+
+    --display:"Bodoni Moda",Georgia,"Times New Roman",serif;
+    --sans:"Archivo",-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+    --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+
+    --pad:clamp(20px,5vw,52px);
+    --gutter:clamp(20px,4vw,56px);
+    --rail:150px;
+    --max:1140px;
+  }
+
+  @media (prefers-color-scheme:dark){
+    :root:not([data-theme="light"]){
+      color-scheme:dark;
+      --ground:#151113;
+      --surface:#1E181A;
+      --surface-2:#272023;
+      --ink:#F0E9EB;
+      --ink-2:#ADA2A6;
+      --ink-3:#847A7E;
+      --rule:#352C2F;
+      --rule-soft:#2A2326;
+      --accent:#E9647E;
+      --accent-on:#1B1315;
+      --accent-wash:#2B1B21;
+    }
+  }
+  :root[data-theme="dark"]{
+    color-scheme:dark;
+    --ground:#151113;
+    --surface:#1E181A;
+    --surface-2:#272023;
+    --ink:#F0E9EB;
+    --ink-2:#ADA2A6;
+    --ink-3:#847A7E;
+    --rule:#352C2F;
+    --rule-soft:#2A2326;
+    --accent:#E9647E;
+    --accent-on:#1B1315;
+    --accent-wash:#2B1B21;
+  }
+
+  html{-webkit-text-size-adjust:100%}
+  @media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+
+  body{margin:0;background:var(--ground)}
+
+  .page{
+    background:var(--ground);
+    color:var(--ink);
+    font-family:var(--sans);
+    font-size:16px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  .wrap{max-width:var(--max);margin-inline:auto;padding-inline:var(--pad)}
+
+  a{color:inherit}
+  :focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+
+  /* ---------- tipografia ---------- */
+  .mono{
+    font-family:var(--mono);
+    font-size:.6875rem;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--ink-3);
+  }
+  .display{font-family:var(--display);font-weight:400;line-height:1.03;letter-spacing:-.015em;text-wrap:balance;margin:0}
+  .h1{font-size:clamp(2.5rem,7.2vw,5rem)}
+  .h2{font-size:clamp(1.9rem,4.2vw,3rem)}
+  .h3{font-family:var(--sans);font-size:1.0625rem;font-weight:600;letter-spacing:-.01em;margin:0;line-height:1.35}
+  .lead{font-size:clamp(1rem,1.5vw,1.1875rem);color:var(--ink-2);max-width:52ch;margin:0}
+  .body{color:var(--ink-2);max-width:62ch;margin:0}
+  .small{font-size:.8125rem;color:var(--ink-3);max-width:64ch;margin:0}
+
+  /* ---------- header ---------- */
+  .top{
+    position:sticky;top:0;z-index:20;
+    background:var(--ground);
+    border-bottom:1px solid var(--rule);
+  }
+  .top-in{display:flex;align-items:center;gap:24px;height:66px}
+  .mark{display:flex;align-items:baseline;gap:9px;text-decoration:none;margin-right:auto}
+  .mark-a{font-family:var(--display);font-size:1.5rem;letter-spacing:-.02em}
+  .mark-b{font-family:var(--mono);font-size:.625rem;letter-spacing:.24em;text-transform:uppercase;color:var(--ink-3)}
+  .nav{display:flex;align-items:center;gap:26px}
+  .nav a{
+    font-size:.875rem;text-decoration:none;color:var(--ink-2);
+    padding-block:4px;border-bottom:1px solid transparent;transition:color .18s,border-color .18s;
+  }
+  .nav a:hover{color:var(--ink);border-bottom-color:var(--accent)}
+  @media (max-width:900px){.nav{display:none}}
+
+  /* ---------- botones ---------- */
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:10px;
+    font-family:var(--mono);font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;
+    padding:13px 22px;text-decoration:none;border:1px solid var(--ink);
+    background:var(--ink);color:var(--ground);cursor:pointer;
+    transition:background .18s,color .18s,border-color .18s;
+  }
+  .btn:hover{background:var(--accent);border-color:var(--accent);color:var(--accent-on)}
+  .btn-ghost{background:transparent;color:var(--ink);border-color:var(--rule)}
+  .btn-ghost:hover{background:transparent;color:var(--accent);border-color:var(--accent)}
+  .btn-sm{padding:9px 15px;font-size:.6875rem}
+
+  /* ---------- estructura ---------- */
+  .band{border-top:1px solid var(--rule)}
+  .sec{padding-block:clamp(52px,8vw,100px)}
+  .spine{display:grid;grid-template-columns:var(--rail) minmax(0,1fr);gap:var(--gutter);align-items:start}
+  @media (max-width:840px){.spine{grid-template-columns:1fr;gap:18px}}
+  .rail{position:sticky;top:96px}
+  @media (max-width:840px){.rail{position:static}}
+  .rail-n{display:block;font-family:var(--mono);font-size:.6875rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+  .rail-t{display:block;margin-top:6px;font-size:.8125rem;color:var(--ink-3);line-height:1.45}
+  .stack{display:flex;flex-direction:column;gap:clamp(20px,3vw,32px)}
+  .stack-tight{display:flex;flex-direction:column;gap:14px}
+
+  /* ---------- hero ---------- */
+  .hero{padding-top:clamp(40px,6vw,80px);padding-bottom:clamp(26px,4vw,42px)}
+  .hero-grid{display:flex;flex-direction:column;gap:clamp(20px,3vw,32px)}
+  .hero h1{max-width:15ch}
+  .hero-cta{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+
+  .swatchbox{margin-top:clamp(18px,3vw,32px)}
+  #ladder{display:block;width:100%;height:clamp(118px,16vw,186px);border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+  .swatch-cap{display:flex;flex-wrap:wrap;gap:6px 18px;justify-content:space-between;padding-top:10px}
+
+  .creds{
+    display:flex;flex-wrap:wrap;gap:10px 28px;
+    padding-block:16px;border-top:1px solid var(--rule);
+  }
+  .creds span{font-family:var(--mono);font-size:.6875rem;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-2)}
+  .creds b{color:var(--accent);font-weight:500}
+
+  /* ---------- servicios ---------- */
+  .svc-list{display:flex;flex-direction:column}
+  .svc{
+    display:grid;
+    grid-template-columns:96px minmax(0,1fr) 150px 112px;
+    gap:24px;align-items:start;
+    padding:22px 12px 22px 0;
+    border-top:1px solid var(--rule-soft);
+    transition:background .18s;
+  }
+  .svc:first-child{border-top:1px solid var(--rule)}
+  .svc:last-child{border-bottom:1px solid var(--rule)}
+  .svc:hover{background:var(--surface)}
+  .svc-code{display:flex;align-items:center;gap:11px;font-family:var(--mono);font-size:.75rem;color:var(--ink-3);letter-spacing:.06em}
+  .chip{width:9px;height:32px;flex:none}
+  .svc-desc{margin:5px 0 0;font-size:.875rem;color:var(--ink-2);max-width:46ch}
+  .svc-meta{font-family:var(--mono);font-size:.75rem;color:var(--ink-2);line-height:1.7}
+  .svc-price{font-family:var(--mono);font-size:1rem;color:var(--ink);font-variant-numeric:tabular-nums;white-space:nowrap}
+  .svc-act{justify-self:end}
+  @media (max-width:840px){
+    .svc{grid-template-columns:minmax(0,1fr) auto;gap:8px 18px;padding-right:0}
+    .svc-code{grid-column:1/-1}
+    .svc-head{grid-column:1/-1}
+    .svc-meta{align-self:end}
+    .svc-act{grid-column:1/-1;justify-self:start;margin-top:6px}
+  }
+
+  /* ---------- proceso ---------- */
+  .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));border-top:1px solid var(--rule)}
+  .step{padding:24px 24px 26px 0;border-bottom:1px solid var(--rule-soft)}
+  .step-n{font-family:var(--mono);font-size:.75rem;color:var(--accent);letter-spacing:.1em}
+  .step h3{margin:10px 0 6px}
+  .step p{margin:0;font-size:.875rem;color:var(--ink-2)}
+
+  /* ---------- galeria ---------- */
+  .gal{display:grid;grid-template-columns:repeat(auto-fit,minmax(172px,1fr));gap:14px}
+  .shot{
+    aspect-ratio:3/4;background:var(--surface);border:1px solid var(--rule);
+    display:flex;align-items:flex-end;padding:12px;overflow:hidden;position:relative;
+  }
+  .shot::before{
+    content:"";position:absolute;inset:0;
+    background:repeating-linear-gradient(-45deg,transparent 0 11px,var(--rule-soft) 11px 12px);
+  }
+  .shot span{position:relative;font-family:var(--mono);font-size:.625rem;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-3);background:var(--surface);padding:4px 7px}
+  .shot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+
+  /* ---------- testimonios ---------- */
+  .quotes{display:grid;grid-template-columns:repeat(auto-fit,minmax(255px,1fr));border-top:1px solid var(--rule)}
+  .quote{padding:26px 28px 26px 0;border-bottom:1px solid var(--rule-soft);margin:0}
+  .quote p{margin:0;font-family:var(--display);font-size:1.25rem;line-height:1.38;letter-spacing:-.01em}
+  .quote footer{margin-top:14px;font-family:var(--mono);font-size:.6875rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);line-height:1.6}
+
+  /* ---------- formulario ---------- */
+  .book{background:var(--surface);border:1px solid var(--rule);padding:clamp(20px,3.4vw,34px)}
+  .fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px 20px}
+  @media (max-width:620px){.fields{grid-template-columns:1fr}}
+  .f-wide{grid-column:1/-1}
+  .field{display:flex;flex-direction:column;gap:7px}
+  .field label{font-family:var(--mono);font-size:.6875rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-2)}
+  .field input,.field select,.field textarea{
+    font-family:var(--sans);font-size:.9375rem;color:var(--ink);
+    background:var(--ground);border:1px solid var(--rule);border-radius:0;
+    padding:11px 12px;width:100%;transition:border-color .18s;
+  }
+  .field textarea{resize:vertical;min-height:86px}
+  .field input:focus,.field select:focus,.field textarea:focus{border-color:var(--accent);outline:none}
+  .field input::placeholder,.field textarea::placeholder{color:var(--ink-3)}
+  .err{display:none;font-size:.8125rem;color:var(--accent);line-height:1.45}
+  .field[data-invalid="true"] input,.field[data-invalid="true"] select{border-color:var(--accent)}
+  .field[data-invalid="true"] .err{display:block}
+  .book-foot{display:flex;flex-wrap:wrap;gap:14px 22px;align-items:center;margin-top:24px}
+
+  .summary{border-top:1px solid var(--rule);margin-top:26px;padding-top:22px}
+  .sum-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px 22px;margin:16px 0 22px}
+  .sum-k{font-family:var(--mono);font-size:.625rem;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-3)}
+  .sum-v{font-size:.9375rem;margin-top:3px;word-break:break-word}
+  .sum-act{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+
+  /* ---------- faq ---------- */
+  .faq details{border-bottom:1px solid var(--rule-soft)}
+  .faq details:first-of-type{border-top:1px solid var(--rule)}
+  .faq summary{
+    list-style:none;cursor:pointer;padding:18px 0;
+    display:flex;gap:16px;align-items:baseline;font-weight:500;font-size:1rem;
+  }
+  .faq summary::-webkit-details-marker{display:none}
+  .faq summary::after{content:"+";margin-left:auto;font-family:var(--mono);color:var(--accent);font-size:1.1rem;line-height:1}
+  .faq details[open] summary::after{content:"\2013"}
+  .faq p{margin:0 0 20px;font-size:.9375rem;color:var(--ink-2);max-width:62ch}
+
+  /* ---------- footer ---------- */
+  .foot{border-top:1px solid var(--rule);padding-block:clamp(38px,5vw,60px)}
+  .foot-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(185px,1fr));gap:30px}
+  .foot h4{font-family:var(--mono);font-size:.6875rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);margin:0 0 12px;font-weight:400}
+  .foot ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:7px;font-size:.9375rem;color:var(--ink-2)}
+  .foot a{text-decoration:none;color:var(--ink-2);border-bottom:1px solid transparent}
+  .foot a:hover{color:var(--accent);border-bottom-color:var(--accent)}
+  .foot-end{display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-between;margin-top:40px;padding-top:18px;border-top:1px solid var(--rule-soft)}
+
+  @media (prefers-reduced-motion:reduce){
+    *{animation-duration:.001ms !important;transition-duration:.001ms !important}
+    html{scroll-behavior:auto}
+  }
+</style>
+</head>
+<body>
+<div class="page" id="top">
+
+  <header class="top">
+    <div class="wrap top-in">
+      <a class="mark" href="#top">
+        <span class="mark-a">Miis</span>
+        <span class="mark-b">Cosmetics</span>
+      </a>
+      <nav class="nav" aria-label="Secciones">
+        <a href="#servicios">Servicios</a>
+        <a href="#proceso">Proceso</a>
+        <a href="#trabajo">Trabajo</a>
+        <a href="#preguntas">Preguntas</a>
+      </nav>
+      <a class="btn btn-sm" href="#agenda">Agendar cita</a>
+    </div>
+  </header>
+
+  <!-- ================= HERO ================= -->
+  <section class="wrap hero">
+    <div class="hero-grid">
+      <p class="mono">Maquillaje profesional &mdash; estudio y a domicilio</p>
+      <h1 class="display h1">Maquillaje que aguanta el flash, el calor y doce horas de fiesta.</h1>
+      <p class="lead">Una sola cita por horario, para que nadie salga con prisa. Piel trabajada en capas, fijado por zonas y kit de retoque para el resto del d&iacute;a.</p>
+      <div class="hero-cta">
+        <a class="btn" href="#agenda">Agendar cita</a>
+        <a class="btn btn-ghost" href="#servicios">Ver servicios y tarifas</a>
+      </div>
+    </div>
+
+    <div class="swatchbox">
+      <canvas id="ladder" role="img" aria-label="Escalera de ocho tonos de base, de porcelana a espresso"></canvas>
+      <div class="swatch-cap">
+        <span class="mono">Ladder 01&ndash;24 &middot; subtonos fr&iacute;o, neutro y c&aacute;lido</span>
+        <span class="mono">Base mezclada frente a ti, nunca del bote</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <div class="creds">
+      <span><b>2019</b> &mdash; a&ntilde;o de apertura</span>
+      <span><b>+400</b> rostros maquillados</span>
+      <span>Novia &middot; editorial &middot; social</span>
+      <span>Martes a s&aacute;bado, 9:00&ndash;20:00</span>
+    </div>
+  </div>
+
+  <!-- ================= SERVICIOS ================= -->
+  <section class="band" id="servicios">
+    <div class="wrap sec spine">
+      <div class="rail">
+        <span class="rail-n">01 / Servicios</span>
+        <span class="rail-t">Cinco formatos. Cada uno con su tiempo de silla real, no optimista.</span>
+      </div>
+      <div class="stack">
+        <h2 class="display h2">La carta</h2>
+
+        <div class="svc-list">
+          <article class="svc">
+            <div class="svc-code"><span class="chip" style="background:#C98A72"></span>MC&#8209;01</div>
+            <div class="svc-head">
+              <h3 class="h3">Social &amp; Glam</h3>
+              <p class="svc-desc">Evento, graduaci&oacute;n, cumplea&ntilde;os. Piel luminosa sin exceso de polvo y foco en ojos.</p>
+            </div>
+            <div class="svc-meta">90 min<br>Estudio o domicilio</div>
+            <div class="svc-price">$850</div>
+            <div class="svc-act"><a class="btn btn-ghost btn-sm" href="#agenda" data-pick="MC-01">Agendar</a></div>
+          </article>
+
+          <article class="svc">
+            <div class="svc-code"><span class="chip" style="background:#E4C9C2"></span>MC&#8209;02</div>
+            <div class="svc-head">
+              <h3 class="h3">Novia</h3>
+              <p class="svc-desc">Prueba previa con fotos de control, d&iacute;a del evento y kit de retoque personalizado.</p>
+            </div>
+            <div class="svc-meta">2 sesiones &middot; 3 h<br>Prueba incluida</div>
+            <div class="svc-price">$3,200</div>
+            <div class="svc-act"><a class="btn btn-ghost btn-sm" href="#agenda" data-pick="MC-02">Agendar</a></div>
+          </article>
+
+          <article class="svc">
+            <div class="svc-code"><span class="chip" style="background:#6E4B52"></span>MC&#8209;03</div>
+            <div class="svc-head">
+              <h3 class="h3">Editorial &amp; c&aacute;mara</h3>
+              <p class="svc-desc">Catálogo, video y producci&oacute;n. Correcci&oacute;n de color y productos sin SPF para evitar flashback.</p>
+            </div>
+            <div class="svc-meta">2 h &middot; media jornada<br>Retoques en set</div>
+            <div class="svc-price">$1,900</div>
+            <div class="svc-act"><a class="btn btn-ghost btn-sm" href="#agenda" data-pick="MC-03">Agendar</a></div>
+          </article>
+
+          <article class="svc">
+            <div class="svc-code"><span class="chip" style="background:#A6183C"></span>MC&#8209;04</div>
+            <div class="svc-head">
+              <h3 class="h3">Cortejo &amp; grupos</h3>
+              <p class="svc-desc">Damas, mam&aacute; e invitadas en el mismo lugar. Desde 3 personas, con horario asignado a cada una.</p>
+            </div>
+            <div class="svc-meta">45 min por persona<br>M&iacute;nimo 3</div>
+            <div class="svc-price">$650 c/u</div>
+            <div class="svc-act"><a class="btn btn-ghost btn-sm" href="#agenda" data-pick="MC-04">Agendar</a></div>
+          </article>
+
+          <article class="svc">
+            <div class="svc-code"><span class="chip" style="background:#3F2E33"></span>MC&#8209;05</div>
+            <div class="svc-head">
+              <h3 class="h3">Clase de automaquillaje</h3>
+              <p class="svc-desc">Con tus propios productos. Terminas con tu rutina escrita paso a paso y la lista de lo que sobra.</p>
+            </div>
+            <div class="svc-meta">2 h &middot; individual<br>Solo en estudio</div>
+            <div class="svc-price">$1,100</div>
+            <div class="svc-act"><a class="btn btn-ghost btn-sm" href="#agenda" data-pick="MC-05">Agendar</a></div>
+          </article>
+        </div>
+
+        <p class="small">Tarifas vigentes 2026. Se aparta con 30% de anticipo. El traslado fuera de la ciudad se cotiza aparte seg&uacute;n distancia y hora de llegada.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= PROCESO ================= -->
+  <section class="band" id="proceso">
+    <div class="wrap sec spine">
+      <div class="rail">
+        <span class="rail-n">02 / Proceso</span>
+        <span class="rail-t">En orden, desde que escribes hasta que sales por la puerta.</span>
+      </div>
+      <div class="stack">
+        <h2 class="display h2">C&oacute;mo trabajamos</h2>
+        <div class="steps">
+          <div class="step">
+            <span class="step-n">01</span>
+            <h3 class="h3">Reservas</h3>
+            <p>Eliges servicio, fecha y hora en el formulario. Confirmo disponibilidad por WhatsApp el mismo d&iacute;a.</p>
+          </div>
+          <div class="step">
+            <span class="step-n">02</span>
+            <h3 class="h3">Brief y prueba</h3>
+            <p>Env&iacute;as referencias y me cuentas de tu piel. En novias y producci&oacute;n agendamos la prueba 3 o 4 semanas antes.</p>
+          </div>
+          <div class="step">
+            <span class="step-n">03</span>
+            <h3 class="h3">El d&iacute;a</h3>
+            <p>Llego 15 minutos antes con el kit completo y montado. Piel, ojos y labios dentro del tiempo acordado.</p>
+          </div>
+          <div class="step">
+            <span class="step-n">04</span>
+            <h3 class="h3">Retoque</h3>
+            <p>Te vas con polvo, labial y papel matificante en una bolsa peque&ntilde;a, m&aacute;s las indicaciones para retocarte sola.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= TRABAJO ================= -->
+  <section class="band" id="trabajo">
+    <div class="wrap sec spine">
+      <div class="rail">
+        <span class="rail-n">03 / Trabajo</span>
+        <span class="rail-t">Cuatro condiciones de luz distintas, porque un maquillaje se juzga en c&aacute;mara.</span>
+      </div>
+      <div class="stack">
+        <h2 class="display h2">Portafolio</h2>
+        <div class="gal">
+          <figure class="shot"><span>Novia &middot; luz natural</span></figure>
+          <figure class="shot"><span>Editorial &middot; flash directo</span></figure>
+          <figure class="shot"><span>Social &middot; noche</span></figure>
+          <figure class="shot"><span>Detalle &middot; ojo gr&aacute;fico</span></figure>
+        </div>
+
+        <div class="quotes">
+          <blockquote class="quote">
+            <p>&ldquo;Boda al aire libre a mediod&iacute;a y ni una foto con la nariz brillando.&rdquo;</p>
+            <footer>Ana L. &middot; novia &middot; marzo 2026</footer>
+          </blockquote>
+          <blockquote class="quote">
+            <p>&ldquo;Dos d&iacute;as de cat&aacute;logo seguidos y nunca vimos flashback en c&aacute;mara.&rdquo;</p>
+            <footer>Estudio Ruvalcaba &middot; direcci&oacute;n de arte</footer>
+          </blockquote>
+          <blockquote class="quote">
+            <p>&ldquo;Tom&eacute; la clase y por fin s&eacute; qu&eacute; brocha uso para qu&eacute;.&rdquo;</p>
+            <footer>Dani M. &middot; clase de automaquillaje</footer>
+          </blockquote>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= AGENDA ================= -->
+  <section class="band" id="agenda">
+    <div class="wrap sec spine">
+      <div class="rail">
+        <span class="rail-n">04 / Agenda</span>
+        <span class="rail-t">Martes a s&aacute;bado, 9:00&ndash;20:00. Respondo en menos de 4 horas.</span>
+      </div>
+      <div class="stack">
+        <h2 class="display h2">Agenda tu cita</h2>
+        <p class="body">Completa los datos y revisa el resumen. Al enviarlo me llega por WhatsApp con todo lo necesario para confirmarte el horario.</p>
+
+        <div class="book">
+          <form id="form" novalidate>
+            <div class="fields">
+              <div class="field" id="f-nombre">
+                <label for="nombre">Nombre completo</label>
+                <input id="nombre" name="nombre" type="text" autocomplete="name" placeholder="Como quieres que te llame">
+                <span class="err">Escribe tu nombre para apartar la cita.</span>
+              </div>
+
+              <div class="field" id="f-tel">
+                <label for="tel">WhatsApp</label>
+                <input id="tel" name="tel" type="tel" inputmode="tel" autocomplete="tel" placeholder="Con clave de pa&iacute;s">
+                <span class="err">Necesito un n&uacute;mero con al menos 8 d&iacute;gitos para confirmarte.</span>
+              </div>
+
+              <div class="field" id="f-servicio">
+                <label for="servicio">Servicio</label>
+                <select id="servicio" name="servicio">
+                  <option value="">Elige uno</option>
+                  <option value="MC-01">MC-01 &middot; Social &amp; Glam</option>
+                  <option value="MC-02">MC-02 &middot; Novia</option>
+                  <option value="MC-03">MC-03 &middot; Editorial &amp; c&aacute;mara</option>
+                  <option value="MC-04">MC-04 &middot; Cortejo &amp; grupos</option>
+                  <option value="MC-05">MC-05 &middot; Clase de automaquillaje</option>
+                </select>
+                <span class="err">Elige el servicio para reservar el tiempo correcto.</span>
+              </div>
+
+              <div class="field" id="f-lugar">
+                <label for="lugar">Lugar</label>
+                <select id="lugar" name="lugar">
+                  <option value="Estudio">En el estudio</option>
+                  <option value="Domicilio">A domicilio</option>
+                </select>
+                <span class="err">Elige d&oacute;nde quieres el servicio.</span>
+              </div>
+
+              <div class="field" id="f-fecha">
+                <label for="fecha">Fecha</label>
+                <input id="fecha" name="fecha" type="date">
+                <span class="err" id="err-fecha">Elige una fecha de hoy en adelante.</span>
+              </div>
+
+              <div class="field" id="f-hora">
+                <label for="hora">Hora de inicio</label>
+                <select id="hora" name="hora">
+                  <option value="">Elige un horario</option>
+                  <option value="09:00">09:00</option>
+                  <option value="11:00">11:00</option>
+                  <option value="13:00">13:00</option>
+                  <option value="15:00">15:00</option>
+                  <option value="17:00">17:00</option>
+                  <option value="19:00">19:00</option>
+                </select>
+                <span class="err">Elige un horario de inicio.</span>
+              </div>
+
+              <div class="field f-wide" id="f-notas">
+                <label for="notas">Notas (opcional)</label>
+                <textarea id="notas" name="notas" placeholder="Piel sensible, alergias, referencias, hora del evento, direcci&oacute;n aproximada..."></textarea>
+              </div>
+            </div>
+
+            <div class="book-foot">
+              <button class="btn" type="submit">Revisar solicitud</button>
+              <span class="small">No se guarda nada en esta p&aacute;gina: el bot&oacute;n arma tu mensaje y t&uacute; lo env&iacute;as.</span>
+            </div>
+          </form>
+
+          <div class="summary" id="summary" hidden>
+            <p class="mono">Resumen de tu solicitud</p>
+            <div class="sum-grid" id="sum-grid"></div>
+            <div class="sum-act">
+              <a class="btn" id="send-wa" href="#" target="_blank" rel="noopener">Enviar por WhatsApp</a>
+              <a class="btn btn-ghost" id="send-mail" href="#">Enviar por correo</a>
+              <button class="btn btn-ghost" type="button" id="edit">Editar datos</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= PREGUNTAS ================= -->
+  <section class="band" id="preguntas">
+    <div class="wrap sec spine">
+      <div class="rail">
+        <span class="rail-n">05 / Preguntas</span>
+        <span class="rail-t">Lo que me escriben antes de reservar.</span>
+      </div>
+      <div class="stack">
+        <h2 class="display h2">Antes de agendar</h2>
+        <div class="faq">
+          <details open>
+            <summary>&iquest;Con cu&aacute;nta anticipaci&oacute;n agendo?</summary>
+            <p>M&iacute;nimo 48 horas para servicios sociales. Para novias, entre 2 y 3 meses: las fechas de mayo y diciembre se cierran mucho antes.</p>
+          </details>
+          <details>
+            <summary>&iquest;Vas a domicilio?</summary>
+            <p>S&iacute;, dentro de la ciudad y sin costo extra. Fuera se cotiza el traslado, y si la cita empieza antes de las 7:00 se agrega tarifa de call time.</p>
+          </details>
+          <details>
+            <summary>Tengo piel sensible o con acne activo, &iquest;puedo maquillarme?</summary>
+            <p>S&iacute;. Trabajo con productos sin fragancia y no comedog&eacute;nicos, y desinfecto brochas entre cada persona. Escr&iacute;belo en las notas del formulario para preparar el kit.</p>
+          </details>
+          <details>
+            <summary>&iquest;Incluye pesta&ntilde;as?</summary>
+            <p>Las postizas de tira est&aacute;n incluidas en todos los servicios. La aplicaci&oacute;n pelo a pelo tiene un costo adicional de $200 y suma 20 minutos.</p>
+          </details>
+          <details>
+            <summary>&iquest;C&oacute;mo aparto la fecha y qu&eacute; pasa si cancelo?</summary>
+            <p>Se aparta con 30% de anticipo por transferencia; el resto se paga el d&iacute;a del servicio. Hasta 72 horas antes reagendas sin costo.</p>
+          </details>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="foot">
+    <div class="wrap">
+      <div class="foot-grid">
+        <div>
+          <div class="mark" style="margin-bottom:14px">
+            <span class="mark-a">Miis</span>
+            <span class="mark-b">Cosmetics</span>
+          </div>
+          <p class="small">Maquillaje profesional para novia, editorial y evento social.</p>
+        </div>
+        <div>
+          <h4>Contacto</h4>
+          <ul>
+            <li><a href="https://wa.me/5210000000000" target="_blank" rel="noopener">WhatsApp</a></li>
+            <li><a href="mailto:hola@miiscosmetics.com">hola@miiscosmetics.com</a></li>
+            <li><a href="https://instagram.com/miiscosmetics" target="_blank" rel="noopener">@miiscosmetics</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Horario</h4>
+          <ul>
+            <li>Martes a viernes &middot; 9:00&ndash;20:00</li>
+            <li>S&aacute;bado &middot; 8:00&ndash;16:00</li>
+            <li>Domingo y lunes &middot; cerrado</li>
+          </ul>
+        </div>
+        <div>
+          <h4>Estudio</h4>
+          <ul>
+            <li>Zona centro, con estacionamiento</li>
+            <li>Direcci&oacute;n exacta al confirmar la cita</li>
+            <li>Servicio a domicilio disponible</li>
+          </ul>
+        </div>
+      </div>
+      <div class="foot-end">
+        <span class="mono">Miis Cosmetics &middot; 2026</span>
+        <span class="mono">Se aparta con 30% de anticipo</span>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ============================================================
+     CONFIGURA AQUI TUS DATOS
+     ============================================================ */
+  var WHATSAPP = "5210000000000";          // clave de pais + numero, sin + ni espacios
+  var EMAIL    = "hola@miiscosmetics.com"; // correo de contacto
+  var CIERRA   = [0, 1];                   // dias cerrados: 0 domingo, 1 lunes
+  /* ============================================================ */
+
+  /* ---------- escalera de tonos (canvas) ---------- */
+  var TONOS = ["#F6DFC9","#EFCDAC","#E3B88E","#D0A070","#B8834F","#96613A","#6F452A","#472B1B"];
+  var cv = document.getElementById("ladder");
+
+  function seeded(n){ var x = Math.sin(n * 127.1) * 43758.5453; return x - Math.floor(x); }
+
+  function pintar(){
+    if(!cv) return;
+    var ctx = cv.getContext("2d");
+    var dpr = window.devicePixelRatio || 1;
+    var w = cv.clientWidth, h = cv.clientHeight;
+    if(!w || !h) return;
+    cv.width = Math.round(w * dpr);
+    cv.height = Math.round(h * dpr);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.clearRect(0, 0, w, h);
+
+    var n = TONOS.length;
+    var gap = w * 0.014;
+    var bw = (w - gap * (n - 1)) / n;
+    var top = h * 0.07, bot = h * 0.93;
+    var pasos = 28;
+
+    for(var i = 0; i < n; i++){
+      var x0 = i * (bw + gap);
+      var s = i * 37 + 5;
+      ctx.beginPath();
+      for(var a = 0; a <= pasos; a++){
+        var t = a / pasos;
+        var y = top + (bot - top) * t;
+        var forma = Math.pow(Math.sin(Math.PI * t), 0.16);
+        var wob = (seeded(s + a) - 0.5) * bw * 0.055;
+        var half = (bw / 2) * forma;
+        var cx = x0 + bw / 2;
+        if(a === 0) ctx.moveTo(cx - half + wob, y); else ctx.lineTo(cx - half + wob, y);
+      }
+      for(var b = pasos; b >= 0; b--){
+        var t2 = b / pasos;
+        var y2 = top + (bot - top) * t2;
+        var forma2 = Math.pow(Math.sin(Math.PI * t2), 0.16);
+        var wob2 = (seeded(s + 100 + b) - 0.5) * bw * 0.055;
+        ctx.lineTo(x0 + bw / 2 + (bw / 2) * forma2 + wob2, y2);
+      }
+      ctx.closePath();
+      ctx.fillStyle = TONOS[i];
+      ctx.fill();
+
+      // veta de producto arrastrado
+      ctx.save();
+      ctx.clip();
+      ctx.globalAlpha = 0.12;
+      ctx.fillStyle = "#FFFFFF";
+      for(var v = 0; v < 6; v++){
+        var vy = top + (bot - top) * (0.10 + 0.16 * v + seeded(s + v * 9) * 0.04);
+        ctx.fillRect(x0, vy, bw, 1.2);
+      }
+      ctx.globalAlpha = 1;
+      var g = ctx.createLinearGradient(x0, 0, x0 + bw, 0);
+      g.addColorStop(0, "rgba(255,255,255,0.13)");
+      g.addColorStop(0.35, "rgba(255,255,255,0)");
+      g.addColorStop(1, "rgba(0,0,0,0.13)");
+      ctx.fillStyle = g;
+      ctx.fillRect(x0, top, bw, bot - top);
+      ctx.restore();
+    }
+  }
+
+  pintar();
+  var rt;
+  window.addEventListener("resize", function(){
+    clearTimeout(rt);
+    rt = setTimeout(pintar, 160);
+  });
+  if(document.fonts && document.fonts.ready) document.fonts.ready.then(pintar);
+
+  /* ---------- formulario ---------- */
+  var form = document.getElementById("form");
+  if(!form) return;
+
+  var servicio = document.getElementById("servicio");
+  var fecha    = document.getElementById("fecha");
+  var errFecha = document.getElementById("err-fecha");
+  var summary  = document.getElementById("summary");
+  var sumGrid  = document.getElementById("sum-grid");
+
+  var NOMBRES = {
+    "MC-01": "MC-01 Social & Glam (90 min)",
+    "MC-02": "MC-02 Novia (prueba + evento)",
+    "MC-03": "MC-03 Editorial & camara (2 h)",
+    "MC-04": "MC-04 Cortejo & grupos (45 min c/u)",
+    "MC-05": "MC-05 Clase de automaquillaje (2 h)"
+  };
+
+  // fecha minima: hoy
+  var hoy = new Date();
+  var iso = function(d){
+    return d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0");
+  };
+  fecha.min = iso(hoy);
+
+  // los botones "Agendar" de la carta preseleccionan el servicio
+  Array.prototype.forEach.call(document.querySelectorAll("[data-pick]"), function(el){
+    el.addEventListener("click", function(){
+      servicio.value = el.getAttribute("data-pick");
+      marcar("f-servicio", false);
+    });
+  });
+
+  function marcar(id, malo){
+    var f = document.getElementById(id);
+    if(f) f.setAttribute("data-invalid", malo ? "true" : "false");
+  }
+
+  function validar(){
+    var ok = true, primero = null;
+
+    var nombre = document.getElementById("nombre").value.trim();
+    var malNombre = nombre.length < 2;
+    marcar("f-nombre", malNombre);
+    if(malNombre){ ok = false; primero = primero || "nombre"; }
+
+    var tel = document.getElementById("tel").value.replace(/\D/g, "");
+    var malTel = tel.length < 8;
+    marcar("f-tel", malTel);
+    if(malTel){ ok = false; primero = primero || "tel"; }
+
+    var malServicio = !servicio.value;
+    marcar("f-servicio", malServicio);
+    if(malServicio){ ok = false; primero = primero || "servicio"; }
+
+    var hora = document.getElementById("hora").value;
+    var malHora = !hora;
+    marcar("f-hora", malHora);
+    if(malHora){ ok = false; primero = primero || "hora"; }
+
+    var malFecha = false;
+    if(!fecha.value){
+      malFecha = true;
+      errFecha.textContent = "Elige la fecha de tu evento.";
+    } else {
+      var p = fecha.value.split("-");
+      var d = new Date(Number(p[0]), Number(p[1]) - 1, Number(p[2]));
+      var base = new Date(); base.setHours(0, 0, 0, 0);
+      var horas = (d - base) / 36e5;
+      if(horas < 0){
+        malFecha = true;
+        errFecha.textContent = "Esa fecha ya paso. Elige una de hoy en adelante.";
+      } else if(CIERRA.indexOf(d.getDay()) !== -1){
+        malFecha = true;
+        errFecha.textContent = "El estudio abre de martes a sabado. Elige otro dia.";
+      } else if(horas < 48){
+        malFecha = true;
+        errFecha.textContent = "Agenda con al menos 48 horas de anticipacion, o escribeme directo por WhatsApp para ver si hay hueco.";
+      }
+    }
+    marcar("f-fecha", malFecha);
+    if(malFecha){ ok = false; primero = primero || "fecha"; }
+
+    if(primero){
+      var el = document.getElementById(primero);
+      if(el) el.focus();
+    }
+    return ok;
+  }
+
+  function datos(){
+    var p = fecha.value.split("-");
+    var d = new Date(Number(p[0]), Number(p[1]) - 1, Number(p[2]));
+    var largo = d.toLocaleDateString("es-MX", { weekday: "long", day: "numeric", month: "long", year: "numeric" });
+    return {
+      Nombre: document.getElementById("nombre").value.trim(),
+      WhatsApp: document.getElementById("tel").value.trim(),
+      Servicio: NOMBRES[servicio.value] || servicio.value,
+      Lugar: document.getElementById("lugar").value,
+      Fecha: largo.charAt(0).toUpperCase() + largo.slice(1),
+      Hora: document.getElementById("hora").value + " h",
+      Notas: document.getElementById("notas").value.trim() || "Sin notas"
+    };
+  }
+
+  form.addEventListener("submit", function(e){
+    e.preventDefault();
+    if(!validar()) return;
+
+    var d = datos();
+    sumGrid.innerHTML = "";
+    Object.keys(d).forEach(function(k){
+      var cell = document.createElement("div");
+      var kk = document.createElement("div");
+      kk.className = "sum-k";
+      kk.textContent = k;
+      var vv = document.createElement("div");
+      vv.className = "sum-v";
+      vv.textContent = d[k];
+      cell.appendChild(kk);
+      cell.appendChild(vv);
+      sumGrid.appendChild(cell);
+    });
+
+    var lineas = ["Hola Miis Cosmetics, quiero agendar una cita."];
+    Object.keys(d).forEach(function(k){ lineas.push(k + ": " + d[k]); });
+    var texto = lineas.join("\n");
+
+    document.getElementById("send-wa").href = "https://wa.me/" + WHATSAPP + "?text=" + encodeURIComponent(texto);
+    document.getElementById("send-mail").href = "mailto:" + EMAIL +
+      "?subject=" + encodeURIComponent("Cita " + servicio.value + " - " + d.Nombre) +
+      "&body=" + encodeURIComponent(texto);
+
+    summary.hidden = false;
+    summary.scrollIntoView({ behavior: "smooth", block: "nearest" });
+  });
+
+  document.getElementById("edit").addEventListener("click", function(){
+    summary.hidden = true;
+    document.getElementById("nombre").focus();
+  });
+})();
+</script>
+</body>
+</html>
