@@ -2,6 +2,56 @@
 
 Landing de una sola página para agendar citas de maquillaje.
 
+## Estado del proyecto
+
+Última actualización: 6 de septiembre de 2026.
+
+- **Sitio publicado:** https://miis-cosmetics-guybt97-4822.vercel.app
+- **Repositorio:** https://github.com/guybrutus/Landing-page-Miis-Cosmetics
+- **Vercel:** cuenta `guybt97-4822`, proyecto `miis-cosmetics`.
+
+La página está terminada de diseño y funcionamiento. Lo que falta son los datos reales.
+
+### Ojo: GitHub y Vercel NO están conectados
+
+El sitio se desplegó subiendo los archivos directamente, no desde el repositorio.
+**Hacer `push` a GitHub no actualiza el sitio publicado.** Son dos pasos separados.
+
+Conectar el repo a Vercel sigue pendiente. Al importarlo probablemente se cree un
+proyecto y una URL nuevos en vez de reutilizar `miis-cosmetics`, así que habría que
+decidir cuál se queda y borrar el otro.
+
+### Pendiente antes de darla por terminada
+
+Todos los datos visibles son de ejemplo:
+
+- [ ] **WhatsApp real.** Hoy dice `5210000000000`, así que ninguna solicitud de cita llega a nadie.
+- [ ] **Correo real.** Hoy dice `hola@miiscosmetics.com`.
+- [ ] **Precios reales.** Los cinco servicios tienen tarifas inventadas.
+- [ ] **Fotos del portafolio.** Los cuatro marcos están vacíos.
+- [ ] **Instagram** del pie de página.
+
+Dónde cambiar cada cosa está explicado en la sección siguiente.
+
+### Decisiones ya tomadas (para no rediscutirlas)
+
+- Sin frameworks, sin dependencias y sin paso de build: un solo archivo HTML.
+- Sin backend. El contacto va por WhatsApp a propósito, en vez de montar un servidor.
+- `page.html` es la fuente; `index.html` se genera a partir de ella. **No editar `index.html` a mano.**
+- La raíz del repositorio es la carpeta de la landing, para que `index.html` quede en la raíz
+  y Vercel o GitHub Pages lo encuentren sin configurar nada.
+
+### Si trabajas en la copia local de Windows
+
+La carpeta es `D:\GUY CLAUDE CODE\PRIMERA LANDING PAGE`. Esa unidad no registra ownership,
+así que git falla con *dubious ownership*. Se arregla una sola vez:
+
+```bash
+git config --global --add safe.directory "D:/GUY CLAUDE CODE/PRIMERA LANDING PAGE"
+```
+
+Trabajando desde la nube esto no aplica.
+
 ## Archivos
 
 | Archivo | Para qué sirve |
