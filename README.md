@@ -62,7 +62,7 @@ Trabajando desde la nube esto no aplica.
 Si editas `page.html`, regenera `index.html` con:
 
 ```bash
-cd "D:/GUY CLAUDE CODE/PRIMERA LANDING PAGE" && { printf '%s\n' '<!doctype html>' '<html lang="es">' '<head>' '<meta charset="utf-8">' '<meta name="viewport" content="width=device-width, initial-scale=1">'; sed 's|<!--BODY-->|</head>\n<body>|' page.html; printf '%s\n' '</body>' '</html>'; } > index.html
+cd "D:/GUY CLAUDE CODE/PRIMERA LANDING PAGE" && { printf '%s\n' '<!doctype html>' '<html lang="es">' '<head>' '<meta charset="utf-8">' '<meta name="viewport" content="width=device-width, initial-scale=1">' '<meta name="description" content="Miis Cosmetics: maquillaje profesional para novia, editorial y evento social. Agenda tu cita en linea.">'; sed 's|<!--BODY-->|</head>\n<body>|' page.html; printf '%s\n' '</body>' '</html>'; } > index.html
 ```
 
 ## Qué tienes que cambiar antes de publicarla
