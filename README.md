@@ -4,22 +4,32 @@ Landing de una sola página para agendar citas de maquillaje.
 
 ## Estado del proyecto
 
-Última actualización: 6 de septiembre de 2026.
+Última actualización: 7 de septiembre de 2026.
 
-- **Sitio publicado:** https://miis-cosmetics-guybt97-4822.vercel.app
+- **Sitio publicado:** https://miis-cosmetics.vercel.app
 - **Repositorio:** https://github.com/guybrutus/Landing-page-Miis-Cosmetics
 - **Vercel:** cuenta `guybt97-4822`, proyecto `miis-cosmetics`.
 
 La página está terminada de diseño y funcionamiento. Lo que falta son los datos reales.
 
-### Ojo: GitHub y Vercel NO están conectados
+### Cuidado con las URLs de Vercel
 
-El sitio se desplegó subiendo los archivos directamente, no desde el repositorio.
-**Hacer `push` a GitHub no actualiza el sitio publicado.** Son dos pasos separados.
+Para difundir el sitio usa siempre la corta: **https://miis-cosmetics.vercel.app**.
+Es la que responde al público sin pedir nada.
 
-Conectar el repo a Vercel sigue pendiente. Al importarlo probablemente se cree un
-proyecto y una URL nuevos en vez de reutilizar `miis-cosmetics`, así que habría que
-decidir cuál se queda y borrar el otro.
+Las direcciones largas del mismo proyecto (`miis-cosmetics-guybt97-4822.vercel.app`
+y las de cada despliegue individual) están detrás de la *Deployment Protection* de
+Vercel: redirigen a un inicio de sesión, así que no sirven para compartir.
+
+### Estado de la conexión GitHub → Vercel
+
+En proceso, todavía sin confirmar. El sitio se publicó originalmente subiendo los
+archivos a mano, no desde el repositorio. **Mientras la conexión no funcione, un
+`push` a GitHub no actualiza el sitio publicado.**
+
+Cómo comprobarlo sin entrar al panel de Vercel: compara el titular del sitio con el
+de `index.html` en este repositorio. Si coinciden, la conexión está publicando sola.
+Si el sitio muestra una versión anterior, no.
 
 ### Pendiente antes de darla por terminada
 
