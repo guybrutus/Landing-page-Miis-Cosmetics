@@ -21,15 +21,23 @@ Las direcciones largas del mismo proyecto (`miis-cosmetics-guybt97-4822.vercel.a
 y las de cada despliegue individual) están detrás de la *Deployment Protection* de
 Vercel: redirigen a un inicio de sesión, así que no sirven para compartir.
 
-### Estado de la conexión GitHub → Vercel
+### Publicación automática: activa
 
-En proceso, todavía sin confirmar. El sitio se publicó originalmente subiendo los
-archivos a mano, no desde el repositorio. **Mientras la conexión no funcione, un
-`push` a GitHub no actualiza el sitio publicado.**
+Cada `push` a `main` publica el sitio solo. No hay que hacer ningún paso extra.
 
-Cómo comprobarlo sin entrar al panel de Vercel: compara el titular del sitio con el
-de `index.html` en este repositorio. Si coinciden, la conexión está publicando sola.
-Si el sitio muestra una versión anterior, no.
+```
+push a GitHub  →  Vercel despliega  →  https://miis-cosmetics.vercel.app
+```
+
+Confirmado el 7 de septiembre de 2026: un push a las 23:09:13 estaba publicado a las
+23:09:28, quince segundos después, sin que nadie tocara el panel de Vercel.
+
+Para verificarlo en cualquier momento sin entrar a Vercel, compara el titular del
+sitio con el de `index.html` en este repositorio. Si coinciden, está publicando sola.
+
+Detalle sin importancia: GitHub no lleva registro de estos despliegues (su pestaña
+`/deployments` devuelve 404). Es solo el rastro que deja la integración; la
+publicación funciona igual.
 
 ### Pendiente antes de darla por terminada
 
